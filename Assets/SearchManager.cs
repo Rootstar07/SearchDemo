@@ -21,7 +21,7 @@ public class SearchManager : MonoBehaviour
             txt.text = keyboard.text;
             Fromis = txt.text;
             feedBackText.text = "검색감지";         
-            //Search();
+            Search();
             keyboard = null;
         }
 
@@ -31,9 +31,7 @@ public class SearchManager : MonoBehaviour
             txt.text = inputfieldText.text;
             Fromis = txt.text;
             Search();
-        }
-        
-
+        } 
     }
 
     public void Search()
@@ -63,6 +61,11 @@ public class SearchManager : MonoBehaviour
 
             feedBackText.text = "입력한 항목이 없음";
         }
+    }
+
+    public void SearchButtonClicked()
+    {
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
     }
 
 }
