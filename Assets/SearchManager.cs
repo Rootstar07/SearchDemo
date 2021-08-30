@@ -2,32 +2,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SearchManager : MonoBehaviour
 {
     TouchScreenKeyboard keyboard;
     public Text txt;
-    string fromis;
+    string Fromis;
+    int count;
+    public Text inputfieldText;
+    public TextMeshProUGUI feedBackText;
+
 
     private void Update()
     {
-        if (TouchScreenKeyboard.visible == false && keyboard != null)
+        if (keyboard != null && keyboard.status == TouchScreenKeyboard.Status.Done)
         {
-
-            // 모바일 키보드에서 완료를 누르면
-            if (keyboard.done)
-            {
-                fromis = keyboard.text;
-                txt.text = fromis;
-                keyboard = null;
-            }
+            txt.text = keyboard.text;
+            Fromis = txt.text;
+            feedBackText.text = "검색감지";         
+            //Search();
+            keyboard = null;
         }
+
+        
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            txt.text = inputfieldText.text;
+            Fromis = txt.text;
+            Search();
+        }
+        
+
     }
 
-    public void SearchButtonClicked()
+    public void Search()
     {
-        Debug.Log("이벤트 시작");
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
+        count = 0;
+
+        if (Fromis != null)
+        {
+            for (int i = 0; i < DataManager.instance.docDatas.Length; i++)
+            {
+                for (int j = 0; j < DataManager.instance.docDatas[i].태그.Length; j++)
+                {
+                    if (Fromis == DataManager.instance.docDatas[i].태그[j])
+                    {
+                        Debug.Log("검색 성공");
+                        count++;
+                    }
+                }
+            }
+            Debug.Log("검색 종료");
+
+            feedBackText.text = count.ToString();
+        }
+        else
+        {
+            Debug.Log("입력한 항목이 없음");
+
+            feedBackText.text = "입력한 항목이 없음";
+        }
     }
 
 }
