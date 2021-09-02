@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class ForApp : MonoBehaviour
 {
-    public GameObject indicator;
+    public GameObject 기본배경;
+    public GameObject 누른배경;
 }

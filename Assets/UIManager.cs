@@ -44,7 +44,8 @@ public class UIManager : MonoBehaviour
         search.SetActive(true);
         searchManager.SearchActive();
 
-        app[0].GetComponent<ForApp>().indicator.SetActive(true);
+        app[0].GetComponent<ForApp>().누른배경.SetActive(true);
+        app[0].GetComponent<ForApp>().기본배경.SetActive(false);
     }
 
     public void Star()
@@ -53,7 +54,8 @@ public class UIManager : MonoBehaviour
         star.SetActive(true);
         starManager.StarActive();
 
-        app[1].GetComponent<ForApp>().indicator.SetActive(true);
+        app[1].GetComponent<ForApp>().누른배경.SetActive(true);
+        app[1].GetComponent<ForApp>().기본배경.SetActive(false);
     }
 
     public void Memo()
@@ -62,7 +64,8 @@ public class UIManager : MonoBehaviour
         memo.SetActive(true);
         memoManager.UpdateMemo();
 
-        app[2].GetComponent<ForApp>().indicator.SetActive(true);
+        app[2].GetComponent<ForApp>().누른배경.SetActive(true);
+        app[2].GetComponent<ForApp>().기본배경.SetActive(false);
     }
 
     public void Setting()
@@ -70,7 +73,8 @@ public class UIManager : MonoBehaviour
         CloseAll();
         setting.SetActive(true);
 
-        app[3].GetComponent<ForApp>().indicator.SetActive(true);
+        app[3].GetComponent<ForApp>().누른배경.SetActive(true);
+        app[3].GetComponent<ForApp>().기본배경.SetActive(false);
 
         // 글자 크기 변화
         exampleText.fontSize =
@@ -134,24 +138,17 @@ public class UIManager : MonoBehaviour
 
         for (int i = 0; i < app.Length; i++)
         {
-            app[i].GetComponent<ForApp>().indicator.SetActive(false);
+            app[i].GetComponent<ForApp>().누른배경.SetActive(false);
+            app[i].GetComponent<ForApp>().기본배경.SetActive(true);
         }
 
         memoManager.SaveMemo();
-    }
-
-    public void Exit()
-    {
-        device.SetActive(false);
-        room.SetActive(true);
     }
 
     public void Settings()
     {
         CloseAll();
         memo.SetActive(true);
-
-        app[3].GetComponent<ForApp>().indicator.SetActive(true);
     }
 
     public void DeviceClicked()
