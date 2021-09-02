@@ -20,6 +20,9 @@ public class SearchManager : MonoBehaviour
     public int 현재문서인덱스;
     public GameObject 별;
     public GameObject 검색화면;
+    public GameObject 추가정보버튼;
+    public TextMeshProUGUI Info;
+    public GameObject 추가정보창;
     [Header("비밀번호 체크")]
     public TextMeshProUGUI 암호종류Text;
     public GameObject 비밀번호경고창;
@@ -27,7 +30,10 @@ public class SearchManager : MonoBehaviour
     public GameObject 해제UI;
     public TextMeshProUGUI 비밀번호feedBackText;
 
+    // 암호 잠금해제 여부
     int lockCode;
+    // 변하지 않는 암호정보
+    int lockInfo;
 
     // 별관리
     GameObject 현재열린결과리스트;
@@ -201,6 +207,25 @@ public class SearchManager : MonoBehaviour
             // 잠김 경고
             PWAlert(lockCode);
         }
+
+        추가정보창.SetActive(false);
+
+        // 추가정보 버튼 표시
+        if (DataManager.instance.docDatas[list.GetComponent<ForResult>().index].암호데이터 != 0)
+        {
+            추가정보버튼.SetActive(true);
+            lockInfo = (int)DataManager.instance.docDatas[list.GetComponent<ForResult>().index].암호데이터;
+        }
+        else
+        {
+            추가정보버튼.SetActive(false);
+        }
+    }
+
+    public void ShowInfo()
+    {
+        추가정보창.SetActive(true);
+        Info.text = DataManager.instance.pWDatas[lockInfo - 1].암호종류.ToString();
     }
 
     public void PWAlert(int code)

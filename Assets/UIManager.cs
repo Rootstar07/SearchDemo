@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public StarManager starManager;
     public GameObject doc;
     public GameObject memo;
+    public MemoManager memoManager;
     public GameObject device;
     public GameObject[] app;
     public GameObject DeviceMenu;
@@ -59,6 +60,7 @@ public class UIManager : MonoBehaviour
     {
         CloseAll();
         memo.SetActive(true);
+        memoManager.UpdateMemo();
 
         app[2].GetComponent<ForApp>().indicator.SetActive(true);
     }
@@ -134,6 +136,8 @@ public class UIManager : MonoBehaviour
         {
             app[i].GetComponent<ForApp>().indicator.SetActive(false);
         }
+
+        memoManager.SaveMemo();
     }
 
     public void Exit()

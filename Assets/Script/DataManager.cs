@@ -10,6 +10,7 @@ public class DataManager : MonoBehaviour
     public GameData gameData;
     public DocData[] docDatas;
     public PWData[] pWDatas;
+    public MemoData[] memoDatas;
 
     public enum PW
     {
@@ -47,6 +48,12 @@ public class DataManager : MonoBehaviour
         public int 자간크기;
     }
 
+    [System.Serializable]
+    public class MemoData
+    {
+        public string 내용;
+    }
+
     public static DataManager instance;
 
     private void Awake()
@@ -54,10 +61,24 @@ public class DataManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        //ImportData();
+    }
+
     public void ExportData()
     {
         string jsonData0 = JsonConvert.SerializeObject(docDatas);
         File.WriteAllText(Application.persistentDataPath + "/docDatas.json", jsonData0);
+
+        string jsonData1 = JsonConvert.SerializeObject(docDatas);
+        File.WriteAllText(Application.persistentDataPath + "/gameData.json", jsonData1);
+
+        string jsonData2 = JsonConvert.SerializeObject(docDatas);
+        File.WriteAllText(Application.persistentDataPath + "/pWDatas.json", jsonData2);
+
+        string jsonData3 = JsonConvert.SerializeObject(docDatas);
+        File.WriteAllText(Application.persistentDataPath + "/memoDatas.json", jsonData3);
 
         Debug.Log("데이터 내보내기 완료");
     }
@@ -66,6 +87,15 @@ public class DataManager : MonoBehaviour
     {
         string data0 = File.ReadAllText(Application.persistentDataPath + "/docDatas.json");
         docDatas = JsonConvert.DeserializeObject<DocData[]>(data0);
+
+        string data1 = File.ReadAllText(Application.persistentDataPath + "/gameData.json");
+        gameData = JsonConvert.DeserializeObject<GameData>(data1);
+
+        string data2 = File.ReadAllText(Application.persistentDataPath + "/pWDatas.json");
+        pWDatas = JsonConvert.DeserializeObject<PWData[]>(data2);
+
+        string data3 = File.ReadAllText(Application.persistentDataPath + "/memoDatas.json");
+        memoDatas = JsonConvert.DeserializeObject<MemoData[]>(data3);
 
         Debug.Log("데이터 불러오기 완료");
     }
