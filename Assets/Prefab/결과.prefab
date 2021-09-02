@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68356c3764ad390429ddad9e48ce8c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: {x: 0, y: 0, z: 0, w: 0}
+  radius: {x: 0, y: 0, z: 10, w: 10}
 --- !u!1 &1653590420177746349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,4 +1059,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68356c3764ad390429ddad9e48ce8c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: {x: 0, y: 0, z: 30, w: 30}
+  radius: {x: 0, y: 0, z: 10, w: 10}

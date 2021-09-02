@@ -20,23 +20,33 @@ public class UIManager : MonoBehaviour
     public GameObject DeviceMenu;
     public GameObject setting;
     public TextMeshProUGUI exampleText;
+    public GameObject 하단바;
     [Header("디바이스 로그인")]
     public Text devicePW;
     public GameObject 로그인영역;
     public GameObject 환영영역;
-
-    [Header("방")]
-    public GameObject room;
+    [Header("시작")]
+    public GameObject 시작화면;
 
     private void Start()
     {
+        시작화면.SetActive(true);
         CloseAll();
     }
 
+    public void StartClick()
+    {
+        시작화면.SetActive(false);
+        // 데이터 로딩
+    }
+
+    //로딩
     public void GameStart()
     {
         animator.SetBool("Start", true);
     }
+
+
 
     public void Search()
     {
@@ -153,7 +163,6 @@ public class UIManager : MonoBehaviour
 
     public void DeviceClicked()
     {
-        room.SetActive(false);
         device.SetActive(true);
         CloseAll();
 
