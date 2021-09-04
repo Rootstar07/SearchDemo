@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
+using TMPro;
 
 public class DataManager : MonoBehaviour
 {
+    public TextMeshProUGUI path;
+
     [Header("문서 데이터")]
     public GameData gameData;
     public DocData[] docDatas;
@@ -81,6 +84,8 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(Application.persistentDataPath + "/memoDatas.json", jsonData3);
 
         Debug.Log("데이터 내보내기 완료");
+
+        path.text = Application.persistentDataPath;
     }
 
     public void ImportData()
