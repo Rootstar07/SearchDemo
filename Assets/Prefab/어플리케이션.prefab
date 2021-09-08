@@ -757,8 +757,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uAC80\uC0C9"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3957c2a9b7c206248a0f9f74ae80cee5, type: 2}
-  m_sharedMaterial: {fileID: -4677136085437250708, guid: 3957c2a9b7c206248a0f9f74ae80cee5,
+  m_fontAsset: {fileID: 11400000, guid: a561067ad6591fd4c884148e36ff8d59, type: 2}
+  m_sharedMaterial: {fileID: -3720747268529206201, guid: a561067ad6591fd4c884148e36ff8d59,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

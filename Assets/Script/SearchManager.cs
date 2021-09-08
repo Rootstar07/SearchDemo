@@ -17,6 +17,7 @@ public class SearchManager : MonoBehaviour
     public GameObject 문서화면;
     public TextMeshProUGUI 문서내용;
     public TextMeshProUGUI 문서제목;
+    public GameObject 날짜;
     public int 현재문서인덱스;
     public GameObject 별;
     public GameObject 검색화면;
@@ -29,6 +30,8 @@ public class SearchManager : MonoBehaviour
     public Text 입력한비밀번호;
     public GameObject 해제UI;
     public TextMeshProUGUI 비밀번호feedBackText;
+    [Header("스크롤 관리")]
+    public RectTransform scrollContent;
 
     // 암호 잠금해제 여부
     int lockCode;
@@ -182,6 +185,9 @@ public class SearchManager : MonoBehaviour
 
     public void ShowDoc(GameObject list)
     {
+        // 스크롤 위로
+        scrollContent.transform.position = new Vector3(0, 0, 0);
+
         // 암호체크
         CheckPW(DataManager.instance.docDatas[list.GetComponent<ForResult>().index].암호데이터);
         현재열린결과리스트 = list;
@@ -194,6 +200,18 @@ public class SearchManager : MonoBehaviour
             DataManager.instance.docDatas[list.GetComponent<ForResult>().index].확인한문서 = true;
             현재문서인덱스 = list.GetComponent<ForResult>().index;
             CheckStar();
+
+            // 날짜 관리
+            if (DataManager.instance.docDatas[list.GetComponent<ForResult>().index].날짜 != "")
+            {
+                날짜.SetActive(true);
+                날짜.GetComponent<TextMeshProUGUI>().text = DataManager.instance.docDatas[list.GetComponent<ForResult>().index].날짜;
+            }
+            else
+            {
+                날짜.SetActive(false);
+            }
+            
 
             // 글자 크기 변화
             문서내용.fontSize = DataManager.instance.gameData.글자크기;

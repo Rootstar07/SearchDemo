@@ -27,6 +27,7 @@ public class DataManager : MonoBehaviour
     public class DocData
     {
         public string 이름;
+        public string 날짜;
         public string[] 태그;
         public bool 중요문서;
         public bool 확인한문서;
@@ -74,13 +75,13 @@ public class DataManager : MonoBehaviour
         string jsonData0 = JsonConvert.SerializeObject(docDatas);
         File.WriteAllText(Application.persistentDataPath + "/docDatas.json", jsonData0);
 
-        string jsonData1 = JsonConvert.SerializeObject(docDatas);
+        string jsonData1 = JsonConvert.SerializeObject(gameData);
         File.WriteAllText(Application.persistentDataPath + "/gameData.json", jsonData1);
 
-        string jsonData2 = JsonConvert.SerializeObject(docDatas);
+        string jsonData2 = JsonConvert.SerializeObject(pWDatas);
         File.WriteAllText(Application.persistentDataPath + "/pWDatas.json", jsonData2);
 
-        string jsonData3 = JsonConvert.SerializeObject(docDatas);
+        string jsonData3 = JsonConvert.SerializeObject(memoDatas);
         File.WriteAllText(Application.persistentDataPath + "/memoDatas.json", jsonData3);
 
         Debug.Log("데이터 내보내기 완료");

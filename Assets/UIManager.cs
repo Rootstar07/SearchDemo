@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         시작화면.SetActive(true);
-        CloseAll();
+        //CloseAll();
     }
 
     public void StartClick()
@@ -99,35 +99,35 @@ public class UIManager : MonoBehaviour
         // 글자 크게
         if (num == 0)
         {
-           if (DataManager.instance.gameData.글자크기 < 140)
+           if (DataManager.instance.gameData.글자크기 < 160)
                 DataManager.instance.gameData.글자크기 = 
                 DataManager.instance.gameData.글자크기 + 20;
         }
         //글자 줄임
         else if (num == 1)
         {
-            if (DataManager.instance.gameData.글자크기 > 60)
+            if (DataManager.instance.gameData.글자크기 > 40)
                 DataManager.instance.gameData.글자크기 =
                 DataManager.instance.gameData.글자크기 - 20;
         }
         //자간 크게
         else if (num == 2)
         {
-            if (DataManager.instance.gameData.자간크기 < 50)
+            if (DataManager.instance.gameData.자간크기 < 150)
                 DataManager.instance.gameData.자간크기 =
                 DataManager.instance.gameData.자간크기 + 10;
         }
         //자간 줄임
         else if (num == 3)
         {
-            if (DataManager.instance.gameData.자간크기 > 10)
+            if (DataManager.instance.gameData.자간크기 > 50)
                 DataManager.instance.gameData.자간크기 =
                 DataManager.instance.gameData.자간크기 - 10;
         }
         else if (num == 5)
         {
             DataManager.instance.gameData.글자크기 = 100;
-            DataManager.instance.gameData.자간크기 = 30;
+            DataManager.instance.gameData.자간크기 = 100;
         }
 
         // 글자 크기 변화
