@@ -18,8 +18,8 @@ public class DataManager : MonoBehaviour
     public enum PW
     {
         없음,
-        A코드,
-        B코드,
+        어머니의_생일,
+        토모히로의_사망날짜,
         C코드
     }
 

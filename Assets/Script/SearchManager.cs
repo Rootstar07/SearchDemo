@@ -272,7 +272,7 @@ public class SearchManager : MonoBehaviour
         {
             lockCode = 0;
         }
-        else if (data == DataManager.PW.A코드)
+        else if (data == DataManager.PW.어머니의_생일)
         {
             if (DataManager.instance.pWDatas[0].해제여부 == true)
             {
@@ -283,7 +283,7 @@ public class SearchManager : MonoBehaviour
                 lockCode = 1;
             }
         }
-        else if (data == DataManager.PW.B코드)
+        else if (data == DataManager.PW.토모히로의_사망날짜)
         {
             if (DataManager.instance.pWDatas[1].해제여부 == true)
             {
