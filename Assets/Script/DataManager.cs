@@ -67,7 +67,7 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        //ImportData();
+        ImportData();
     }
 
     public void ExportData()

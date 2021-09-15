@@ -32,6 +32,11 @@ public class SearchManager : MonoBehaviour
     public TextMeshProUGUI 비밀번호feedBackText;
     [Header("스크롤 관리")]
     public RectTransform scrollContent;
+    [Header("비밀번호알림창 즐겨찾기")]
+    public StarManager starManager;
+    public GameObject 경고창별;
+    public Sprite 찬별;
+    public Sprite 빈별;
 
     // 암호 잠금해제 여부
     int lockCode;
@@ -195,24 +200,25 @@ public class SearchManager : MonoBehaviour
         if (lockCode == 0)
         {         
             문서화면.SetActive(true);
-            문서제목.text = DataManager.instance.docDatas[list.GetComponent<ForResult>().index].이름;
-            문서내용.text = DataManager.instance.docDatas[list.GetComponent<ForResult>().index].내용;
-            DataManager.instance.docDatas[list.GetComponent<ForResult>().index].확인한문서 = true;
-            현재문서인덱스 = list.GetComponent<ForResult>().index;
+            문서제목.text = DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].이름;
+            문서내용.text = DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].내용;
+            DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].확인한문서 = true;
+            현재문서인덱스 = 현재열린결과리스트.GetComponent<ForResult>().index;
             CheckStar();
 
+            /*
             // 날짜 관리
-            if (DataManager.instance.docDatas[list.GetComponent<ForResult>().index].날짜 != "")
+            if (DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].날짜 != "")
             {
                 날짜.SetActive(true);
-                날짜.GetComponent<TextMeshProUGUI>().text = DataManager.instance.docDatas[list.GetComponent<ForResult>().index].날짜;
+                날짜.GetComponent<TextMeshProUGUI>().text = DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].날짜;
             }
             else
             {
                 날짜.SetActive(false);
             }
+            */
             
-
             // 글자 크기 변화
             문서내용.fontSize = DataManager.instance.gameData.글자크기;
 
@@ -221,7 +227,6 @@ public class SearchManager : MonoBehaviour
         else
         {
             Debug.Log(lockCode);
-
             // 잠김 경고
             PWAlert(lockCode);
         }
@@ -252,6 +257,8 @@ public class SearchManager : MonoBehaviour
         비밀번호feedBackText.text = "파일이 아래의 암호로 보호되고 있습니다";
         해제UI.SetActive(false);
 
+        PWAlertStar();
+
         switch (code)
         {
             case 1:
@@ -263,6 +270,32 @@ public class SearchManager : MonoBehaviour
             case 3:
                 암호종류Text.text = DataManager.instance.pWDatas[2].암호종류.ToString();
                 break;
+        }
+    }
+
+    public void PWAlertStar()
+    {
+        if (DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].중요문서)
+        {
+            경고창별.GetComponent<Image>().sprite = 찬별;
+        }
+        else
+        {
+            경고창별.GetComponent<Image>().sprite = 빈별;
+        }
+    }
+
+    public void ClickAlertStar()
+    {
+        if (DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].중요문서)
+        {
+            DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].중요문서 = false;
+            PWAlertStar();
+        }
+        else
+        {
+            DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].중요문서 = true;
+            PWAlertStar();
         }
     }
 
@@ -329,12 +362,6 @@ public class SearchManager : MonoBehaviour
         ShowDoc(현재열린결과리스트);
     }
 
-    public void OffDoc()
-    {
-        Search();
-        문서화면.SetActive(false);
-    }
-
     public void CheckStar()
     {
         if (DataManager.instance.docDatas[현재문서인덱스].중요문서)
@@ -358,6 +385,68 @@ public class SearchManager : MonoBehaviour
         {
             별.SetActive(true);
             DataManager.instance.docDatas[현재문서인덱스].중요문서 = true;
+        }
+    }
+
+    public void OffDoc()
+    {
+        Search();
+        문서화면.SetActive(false);
+
+        // 즐겨찾기 화면에서 강조 업데이트
+        UpdateStarLockInStarList();
+
+
+    }
+
+    public void AlertClose()
+    {
+        비밀번호경고창.SetActive(false);
+
+        // 검색화면에서 즐겨찾기 판단
+        Search();
+
+        // 즐겨찾기 화면에서 강조 업데이트
+        UpdateStarLockInStarList();
+    }
+
+    public void UpdateStarLockInStarList()
+    {
+        for (int i = 0; i < starManager.starList.Length; i++)
+        {
+            if (starManager.starList[i].activeSelf)
+            {
+                // 즐겨찾기 업데이트
+                if (DataManager.instance.docDatas[starManager.starList[i].GetComponent<ForResult>().index].중요문서)
+                {
+                    starManager.starList[i].GetComponent<ForResult>().중요테두리.SetActive(true);
+                }
+                else
+                {
+                    starManager.starList[i].GetComponent<ForResult>().중요테두리.SetActive(false);
+                }
+
+                // 잠금 업데이트
+                if (DataManager.instance.docDatas[starManager.starList[i].GetComponent<ForResult>().index].암호데이터 != 0)
+                {
+                    if (DataManager.instance.pWDatas[(int)DataManager.instance.docDatas[starManager.starList[i].GetComponent<ForResult>().index].암호데이터 - 1].해제여부)
+                    {
+                        starManager.starList[i].GetComponent<ForResult>().잠금배경.SetActive(true);
+                        starManager.starList[i].GetComponent<ForResult>().잠금아이콘.SetActive(false);
+                        starManager.starList[i].GetComponent<ForResult>().해제아이콘.SetActive(true);
+                    }
+                    else
+                    {
+                        starManager.starList[i].GetComponent<ForResult>().잠금배경.SetActive(true);
+                        starManager.starList[i].GetComponent<ForResult>().잠금아이콘.SetActive(true);
+                        starManager.starList[i].GetComponent<ForResult>().해제아이콘.SetActive(false);
+                    }
+                }
+                else
+                    starManager.starList[i].GetComponent<ForResult>().잠금배경.SetActive(false);
+            }
+            else
+                break;
         }
     }
 }

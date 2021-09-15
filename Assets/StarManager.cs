@@ -60,10 +60,21 @@ public class StarManager : MonoBehaviour
 
         starList[index].GetComponent<ForResult>().확인한문서테두리.SetActive(false);
 
+        // 잠금표시
         if (DataManager.instance.docDatas[i].암호데이터 != 0)
         {
-            starList[index].GetComponent<ForResult>().잠금배경.SetActive(true);
-            starList[index].GetComponent<ForResult>().해제아이콘.SetActive(true);
+            if (DataManager.instance.pWDatas[(int)DataManager.instance.docDatas[i].암호데이터 - 1].해제여부 == true)
+            {
+                starList[index].GetComponent<ForResult>().잠금배경.SetActive(true);
+                starList[index].GetComponent<ForResult>().해제아이콘.SetActive(true);
+                starList[index].GetComponent<ForResult>().잠금아이콘.SetActive(false);
+            }
+            else
+            {
+                starList[index].GetComponent<ForResult>().잠금배경.SetActive(true);
+                starList[index].GetComponent<ForResult>().해제아이콘.SetActive(false);
+                starList[index].GetComponent<ForResult>().잠금아이콘.SetActive(true);
+            }
         }
         else
         {
