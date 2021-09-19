@@ -14,6 +14,7 @@ public class DataManager : MonoBehaviour
     public DocData[] docDatas;
     public PWData[] pWDatas;
     public MemoData[] memoDatas;
+    public ThemeData[] themeDatas;
 
     public enum PW
     {
@@ -50,12 +51,23 @@ public class DataManager : MonoBehaviour
         public bool 컴퓨터잠금여부;
         public int 글자크기;
         public int 자간크기;
+        public int 현재테마;
     }
 
     [System.Serializable]
     public class MemoData
     {
         public string 내용;
+    }
+
+    [System.Serializable]
+    public class ThemeData
+    {
+        public bool 활성가능;
+        public Color basicColor;
+        public Color anoColor;
+        public Color shadowColor;
+        public Color backgroundColor;
     }
 
     public static DataManager instance;
