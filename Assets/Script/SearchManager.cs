@@ -191,7 +191,7 @@ public class SearchManager : MonoBehaviour
     public void ShowDoc(GameObject list)
     {
         // 스크롤 위로
-        scrollContent.transform.position = new Vector3(0, 0, 0);
+        scrollContent.transform.position = new Vector2(scrollContent.transform.position.x, 0);
 
         // 암호체크
         CheckPW(DataManager.instance.docDatas[list.GetComponent<ForResult>().index].암호데이터);
