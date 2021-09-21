@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     public GameObject 환영영역;
     [Header("시작")]
     public GameObject 시작화면;
+    public GameObject 검색기록;
 
     private void Start()
     {
@@ -62,7 +63,9 @@ public class UIManager : MonoBehaviour
         setting.transform.localPosition =
             new Vector2(0, setting.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
         doc.transform.localPosition =
-            new Vector2(0, doc.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+            new Vector2(0, doc.transform.localPosition.y + DPToPixel(2280, 50) * 2.3f);
+        검색기록.transform.localPosition =
+            new Vector2(0, 검색기록.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
 
     }
 
