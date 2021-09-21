@@ -37,6 +37,11 @@ public class SearchManager : MonoBehaviour
     public GameObject 경고창별;
     public Sprite 찬별;
     public Sprite 빈별;
+    [Header("검색기록")]
+    public GameObject searchHistory;
+    public GameObject[] 검색기록목록;
+    public GameObject 검색기록;
+    public InputField inputField;
 
     // 암호 잠금해제 여부
     int lockCode;
@@ -51,6 +56,13 @@ public class SearchManager : MonoBehaviour
         DeleteList();
         feedBackText.text = "";
         feedBackText2.text = "";
+
+        // 검색기록 할당
+        for (int i = 0; i < 검색기록.transform.childCount; i++)
+        {
+            검색기록목록[i] = 검색기록.transform.GetChild(i).gameObject;
+        }
+
     }
 
     private void Update()
@@ -123,12 +135,64 @@ public class SearchManager : MonoBehaviour
             }
             // 검색 결과 숫자 피드백
             feedBackText.text = count.ToString();
+
+            // 검색 결과 히스토리에 추가
+            AddToHistory();
         }
         else
         {
             feedBackText.text = "입력한 항목이 없음";
         }
     }
+
+    // 검색기록
+    public void ShowSearchHistory()
+    {
+        searchHistory.SetActive(true);
+    }
+
+    public void CloseSearchHistory()
+    {
+        searchHistory.SetActive(false);
+    }
+
+    public void AddToHistory()
+    {
+        // 중복되지 않는다면 추가하기
+        if (검색기록목록[0].GetComponent<ForHistory>().기록 != Fromis)
+        {
+            // 한칸씩 밀기
+            for (int i = 검색기록목록.Length - 1; i > -1; i--)
+            {
+                if (i != 0)
+                {
+                    검색기록목록[i].GetComponent<ForHistory>().기록 = 검색기록목록[i - 1].GetComponent<ForHistory>().기록;
+                }
+            }
+
+            // 추가
+            검색기록목록[0].GetComponent<ForHistory>().기록 = Fromis;
+
+            // 리스트에 표시
+            for (int i = 0; i < 검색기록목록.Length; i++)
+            {
+                검색기록목록[i].GetComponent<ForHistory>().targetText.text = 검색기록목록[i].GetComponent<ForHistory>().기록;
+            }
+        }
+    }
+
+    public void ClickHistory(GameObject history)
+    {
+        if (history.GetComponent<ForHistory>().기록 != "")
+        {
+            CloseSearchHistory();
+            Fromis = history.GetComponent<ForHistory>().기록;
+            Search();
+        }
+
+        inputField.text = Fromis;
+    }
+
 
     public void DeleteList()
     {
