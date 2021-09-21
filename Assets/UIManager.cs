@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviour
     {
         시작화면.SetActive(true);
         //CloseAll();
+
+        UIPos();
     }
 
     public void StartClick()
@@ -46,7 +48,31 @@ public class UIManager : MonoBehaviour
         animator.SetBool("Start", true);
     }
 
+    // 배너 광고 UI 위치 조정
+    public void UIPos()
+    {
+        하단바.transform.localPosition = 
+            new Vector2(0, 하단바.transform.localPosition.y + DPToPixel(2280, 50)*2.3f);
+        search.transform.localPosition =
+            new Vector2(0, search.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+        star.transform.localPosition =
+            new Vector2(0, star.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+        memo.transform.localPosition =
+            new Vector2(0, memo.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+        setting.transform.localPosition =
+            new Vector2(0, setting.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+        doc.transform.localPosition =
+            new Vector2(0, doc.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
 
+    }
+
+    public float DPToPixel(float fFixedResoulutionHeight, float fdpHeight)
+    {
+        float fNowDpi = (Screen.dpi * fFixedResoulutionHeight) / Screen.height;
+        float scale = fNowDpi / 160;
+        float pixel = fdpHeight * scale;
+        return pixel;
+    }
 
     public void Search()
     {
