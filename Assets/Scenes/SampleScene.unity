@@ -45606,6 +45606,7 @@ MonoBehaviour:
   "\uB85C\uADF8\uC778\uC601\uC5ED": {fileID: 1290227535}
   "\uD658\uC601\uC601\uC5ED": {fileID: 1664722004}
   "\uC2DC\uC791\uD654\uBA74": {fileID: 1551644241}
+  "\uAC80\uC0C9\uAE30\uB85D": {fileID: 1313060776}
 --- !u!4 &1859511569
 Transform:
   m_ObjectHideFlags: 0
