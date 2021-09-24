@@ -28,6 +28,13 @@ public class UIManager : MonoBehaviour
     [Header("시작")]
     public GameObject 시작화면;
     public GameObject 검색기록;
+    [Header("설정 피드백")]
+    public TextMeshProUGUI 글자크기;
+    public TextMeshProUGUI 글자간격;
+    public TextMeshProUGUI 띄어쓰기;
+    public TextMeshProUGUI 줄간격;
+    public TextMeshProUGUI 문단간격;
+
 
     private void Start()
     {
@@ -35,6 +42,8 @@ public class UIManager : MonoBehaviour
         //CloseAll();
 
         UIPos();
+
+        UpdateUIFeedBack();
     }
 
     public void StartClick()
@@ -52,21 +61,23 @@ public class UIManager : MonoBehaviour
     // 배너 광고 UI 위치 조정
     public void UIPos()
     {
-        하단바.transform.localPosition = 
-            new Vector2(0, 하단바.transform.localPosition.y + DPToPixel(2280, 50)*2.3f);
-        search.transform.localPosition =
-            new Vector2(0, search.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
-        star.transform.localPosition =
-            new Vector2(0, star.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
-        memo.transform.localPosition =
-            new Vector2(0, memo.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
-        setting.transform.localPosition =
-            new Vector2(0, setting.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
-        doc.transform.localPosition =
-            new Vector2(0, doc.transform.localPosition.y + DPToPixel(2280, 50) * 2.3f);
-        검색기록.transform.localPosition =
-            new Vector2(0, 검색기록.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
-
+        if (!DataManager.instance.gameData.후원자)
+        {
+            하단바.transform.localPosition =
+                new Vector2(0, 하단바.transform.localPosition.y + DPToPixel(2280, 50) * 2.3f);
+            search.transform.localPosition =
+                new Vector2(0, search.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+            star.transform.localPosition =
+                new Vector2(0, star.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+            memo.transform.localPosition =
+                new Vector2(0, memo.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+            setting.transform.localPosition =
+                new Vector2(0, setting.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+            doc.transform.localPosition =
+                new Vector2(0, doc.transform.localPosition.y + DPToPixel(2280, 50) * 2.3f);
+            검색기록.transform.localPosition =
+                new Vector2(0, 검색기록.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+        }
     }
 
     public float DPToPixel(float fFixedResoulutionHeight, float fdpHeight)
@@ -130,34 +141,79 @@ public class UIManager : MonoBehaviour
         {
            if (DataManager.instance.gameData.글자크기 < 160)
                 DataManager.instance.gameData.글자크기 = 
-                DataManager.instance.gameData.글자크기 + 20;
+                DataManager.instance.gameData.글자크기 + 10;
         }
         //글자 줄임
         else if (num == 1)
         {
             if (DataManager.instance.gameData.글자크기 > 40)
                 DataManager.instance.gameData.글자크기 =
-                DataManager.instance.gameData.글자크기 - 20;
+                DataManager.instance.gameData.글자크기 - 10;
         }
-        //자간 크게
+        //줄간격 크게
         else if (num == 2)
         {
-            if (DataManager.instance.gameData.자간크기 < 150)
+            if (DataManager.instance.gameData.자간크기 < 160)
                 DataManager.instance.gameData.자간크기 =
                 DataManager.instance.gameData.자간크기 + 10;
         }
-        //자간 줄임
+        //줄간격 줄임
         else if (num == 3)
         {
-            if (DataManager.instance.gameData.자간크기 > 50)
+            if (DataManager.instance.gameData.자간크기 > 40)
                 DataManager.instance.gameData.자간크기 =
                 DataManager.instance.gameData.자간크기 - 10;
         }
+        // 초기화
         else if (num == 5)
         {
             DataManager.instance.gameData.글자크기 = 100;
-            DataManager.instance.gameData.자간크기 = 100;
+            DataManager.instance.gameData.자간크기 = 120;
+            DataManager.instance.gameData.글자간격 = 5;
+            DataManager.instance.gameData.띄어쓰기 = 20;
+            DataManager.instance.gameData.문단간격 = 200;
         }
+        // 글자간격
+        else if (num == 6)
+        {
+            if (DataManager.instance.gameData.글자간격 < 10)
+                DataManager.instance.gameData.글자간격 =
+                DataManager.instance.gameData.글자간격 + 1;
+        }
+        else if (num == 7)
+        {
+            if (DataManager.instance.gameData.글자간격 > 0)
+                DataManager.instance.gameData.글자간격 =
+                DataManager.instance.gameData.글자간격 - 1;
+        }
+        // 띄어쓰기
+        else if (num == 8)
+        {
+            if (DataManager.instance.gameData.띄어쓰기 < 40)
+                DataManager.instance.gameData.띄어쓰기 =
+                DataManager.instance.gameData.띄어쓰기 + 5;
+        }
+        else if (num == 9)
+        {
+            if (DataManager.instance.gameData.띄어쓰기 > 0)
+                DataManager.instance.gameData.띄어쓰기 =
+                DataManager.instance.gameData.띄어쓰기 - 5;
+        }
+        // 문단간격
+        else if (num == 10)
+        {
+            if (DataManager.instance.gameData.문단간격 < 400)
+                DataManager.instance.gameData.문단간격 =
+                DataManager.instance.gameData.문단간격 + 20;
+        }
+        else if (num == 11)
+        {
+            if (DataManager.instance.gameData.문단간격 > 0)
+                DataManager.instance.gameData.문단간격 =
+                DataManager.instance.gameData.문단간격 - 20;
+        }
+
+        UpdateUIFeedBack();
 
         // 글자 크기 변화
         exampleText.fontSize =
@@ -165,6 +221,24 @@ public class UIManager : MonoBehaviour
 
         exampleText.lineSpacing =
             DataManager.instance.gameData.자간크기;
+
+        exampleText.characterSpacing =
+            DataManager.instance.gameData.글자간격;
+
+        exampleText.wordSpacing =
+            DataManager.instance.gameData.띄어쓰기;
+
+        exampleText.paragraphSpacing =
+            DataManager.instance.gameData.문단간격;
+    }
+
+    public void UpdateUIFeedBack()
+    {
+        글자크기.text = DataManager.instance.gameData.글자크기.ToString();
+        글자간격.text = DataManager.instance.gameData.글자간격.ToString();
+        띄어쓰기.text = DataManager.instance.gameData.띄어쓰기.ToString();
+        줄간격.text = DataManager.instance.gameData.자간크기.ToString();
+        문단간격.text = DataManager.instance.gameData.문단간격.ToString();
     }
 
     public void CloseAll()

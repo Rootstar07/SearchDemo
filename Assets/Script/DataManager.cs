@@ -51,7 +51,11 @@ public class DataManager : MonoBehaviour
         public bool 컴퓨터잠금여부;
         public int 글자크기;
         public int 자간크기;
+        public int 글자간격;
+        public int 띄어쓰기;
+        public int 문단간격;
         public int 현재테마;
+        public bool 후원자;
     }
 
     [System.Serializable]

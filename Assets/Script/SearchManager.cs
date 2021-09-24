@@ -141,7 +141,7 @@ public class SearchManager : MonoBehaviour
         }
         else
         {
-            feedBackText.text = "입력한 항목이 없음";
+            feedBackText.text = "0";
         }
     }
 
@@ -269,24 +269,17 @@ public class SearchManager : MonoBehaviour
             DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].확인한문서 = true;
             현재문서인덱스 = 현재열린결과리스트.GetComponent<ForResult>().index;
             CheckStar();
-
-            /*
+            
             // 날짜 관리
-            if (DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].날짜 != "")
-            {
                 날짜.SetActive(true);
                 날짜.GetComponent<TextMeshProUGUI>().text = DataManager.instance.docDatas[현재열린결과리스트.GetComponent<ForResult>().index].날짜;
-            }
-            else
-            {
-                날짜.SetActive(false);
-            }
-            */
-            
+          
             // 글자 크기 변화
             문서내용.fontSize = DataManager.instance.gameData.글자크기;
-
             문서내용.lineSpacing = DataManager.instance.gameData.자간크기;
+            문서내용.characterSpacing = DataManager.instance.gameData.글자간격;
+            문서내용.wordSpacing = DataManager.instance.gameData.띄어쓰기;
+            문서내용.paragraphSpacing = DataManager.instance.gameData.문단간격;
         }
         else
         {
