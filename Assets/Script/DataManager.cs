@@ -19,9 +19,12 @@ public class DataManager : MonoBehaviour
     public enum PW
     {
         없음,
-        어머니의_생일,
-        토모히로의_사망날짜,
-        C코드
+        구원받은_장소,
+        토모히로의_사망날짜_YYMMDD,
+        강정호의_아들_이름,
+        유키코의_생일_MMDD,
+        유키코의_두번째책_출간일_MMDD,
+        보관물_756
     }
 
     [System.Serializable]
@@ -83,7 +86,18 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        ImportData();
+        // 데이터 확인
+        FileInfo fi = new FileInfo(Application.persistentDataPath + "/docDatas.json");
+        if (fi.Exists)
+        {
+            Debug.Log("저장된 파일 있음");
+            ImportData();
+        }
+        else
+        {
+            Debug.Log("저장된 파일 없음");
+            LoadData();
+        }
     }
 
     public void ExportData()
@@ -100,11 +114,12 @@ public class DataManager : MonoBehaviour
         string jsonData3 = JsonConvert.SerializeObject(memoDatas);
         File.WriteAllText(Application.persistentDataPath + "/memoDatas.json", jsonData3);
 
-        Debug.Log("데이터 내보내기 완료");
+        Debug.Log("저장 완료");
 
         path.text = Application.persistentDataPath;
     }
 
+    // android/data 에서 접근하는 방법
     public void ImportData()
     {
         string data0 = File.ReadAllText(Application.persistentDataPath + "/docDatas.json");
@@ -119,6 +134,32 @@ public class DataManager : MonoBehaviour
         string data3 = File.ReadAllText(Application.persistentDataPath + "/memoDatas.json");
         memoDatas = JsonConvert.DeserializeObject<MemoData[]>(data3);
 
-        Debug.Log("데이터 불러오기 완료");
+        Debug.Log("불러오기 완료");
+    }
+
+    // 유니티 파일 내부에서 처리
+    public void LoadData()
+    {
+        // 초기 파일 불러오기
+        TextAsset asset = Resources.Load<TextAsset>("json/DEMOdocDatas");
+        docDatas = JsonConvert.DeserializeObject<DocData[]>(asset.ToString());
+
+        Debug.Log("초기 데이터 불러오기 성공");
+    }
+
+    public void DeleteData()
+    {
+        File.Delete(Application.persistentDataPath + "/docDatas.json");
+        File.Delete(Application.persistentDataPath + "/gameData.json");
+        File.Delete(Application.persistentDataPath + "/pWDatas.json");
+        File.Delete(Application.persistentDataPath + "/memoDatas.json");
+
+        Debug.Log("초기화 완료");
+
+        Application.Quit();
+
+        //LoadData();
+        //ExportData();
+        //ImportData();
     }
 }

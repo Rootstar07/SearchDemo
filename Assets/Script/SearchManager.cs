@@ -42,6 +42,8 @@ public class SearchManager : MonoBehaviour
     public GameObject[] 검색기록목록;
     public GameObject 검색기록;
     public InputField inputField;
+    [Header("사진관리")]
+    public GameObject 안시우사진;
 
     // 암호 잠금해제 여부
     int lockCode;
@@ -300,6 +302,18 @@ public class SearchManager : MonoBehaviour
         {
             추가정보버튼.SetActive(false);
         }
+
+        // 사진 표시
+        if (DataManager.instance.docDatas[list.GetComponent<ForResult>().index].이름 == "구원")
+        {
+            Debug.Log("사진표시");
+            안시우사진.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("문서표시");
+            안시우사진.SetActive(false);
+        }
     }
 
     public void ShowInfo()
@@ -362,7 +376,7 @@ public class SearchManager : MonoBehaviour
         {
             lockCode = 0;
         }
-        else if (data == DataManager.PW.어머니의_생일)
+        else if (data == DataManager.PW.구원받은_장소)
         {
             if (DataManager.instance.pWDatas[0].해제여부 == true)
             {
@@ -373,7 +387,7 @@ public class SearchManager : MonoBehaviour
                 lockCode = 1;
             }
         }
-        else if (data == DataManager.PW.토모히로의_사망날짜)
+        else if (data == DataManager.PW.토모히로의_사망날짜_YYMMDD)
         {
             if (DataManager.instance.pWDatas[1].해제여부 == true)
             {
@@ -384,9 +398,42 @@ public class SearchManager : MonoBehaviour
                 lockCode = 2;
             }
         }
-        else if (data == DataManager.PW.C코드)
+        else if (data == DataManager.PW.강정호의_아들_이름)
         {
             if (DataManager.instance.pWDatas[2].해제여부 == true)
+            {
+                lockCode = 0;
+            }
+            else
+            {
+                lockCode = 3;
+            }
+        }
+        else if (data == DataManager.PW.유키코의_생일_MMDD)
+        {
+            if (DataManager.instance.pWDatas[3].해제여부 == true)
+            {
+                lockCode = 0;
+            }
+            else
+            {
+                lockCode = 3;
+            }
+        }
+        else if (data == DataManager.PW.유키코의_두번째책_출간일_MMDD)
+        {
+            if (DataManager.instance.pWDatas[4].해제여부 == true)
+            {
+                lockCode = 0;
+            }
+            else
+            {
+                lockCode = 3;
+            }
+        }
+        else if (data == DataManager.PW.보관물_756)
+        {
+            if (DataManager.instance.pWDatas[5].해제여부 == true)
             {
                 lockCode = 0;
             }

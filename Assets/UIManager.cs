@@ -122,6 +122,7 @@ public class UIManager : MonoBehaviour
     {
         CloseAll();
         setting.SetActive(true);
+        UpdateUIFeedBack();
 
         app[3].GetComponent<ForApp>().누른배경.SetActive(true);
         app[3].GetComponent<ForApp>().기본배경.SetActive(false);
