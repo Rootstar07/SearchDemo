@@ -45,6 +45,8 @@ public class SearchManager : MonoBehaviour
     public HistoryManager historyManager;
     [Header("사진관리")]
     public GameObject 안시우사진;
+    bool 엔딩조건달성 = false;
+    public GameObject endingScene;
 
     // 암호 잠금해제 여부
     int lockCode;
@@ -330,6 +332,13 @@ public class SearchManager : MonoBehaviour
             안시우사진.SetActive(false);
         }
 
+        if (DataManager.instance.docDatas[list.GetComponent<ForResult>().index].이름 == "NHK 화재 발생")
+        {
+            엔딩조건달성 = true;
+        }
+
+        
+
         // 클릭음 재생
         DataManager.instance.onOffAudioSource.Play();
     }
@@ -524,14 +533,21 @@ public class SearchManager : MonoBehaviour
 
     public void OffDoc()
     {
-        Search();
-        문서화면.SetActive(false);
+        if (엔딩조건달성)
+        {
+            endingScene.SetActive(true);
+        }
+        else
+        {
+            Search();
+            문서화면.SetActive(false);
 
-        // 즐겨찾기 화면에서 강조 업데이트
-        UpdateStarLockInStarList();
+            // 즐겨찾기 화면에서 강조 업데이트
+            UpdateStarLockInStarList();
 
-        // 저장하기
-        DataManager.instance.ExportData();
+            // 저장하기
+            DataManager.instance.ExportData();
+        }
     }
 
     public void AlertClose()
