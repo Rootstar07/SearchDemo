@@ -34,4 +34,13 @@ public class MemoManager : MonoBehaviour
         }
     }
 
+    public void LoadMemo()
+    {
+        for (int i =0; i < DataManager.instance.memoDatas.Length; i++)
+        {
+            memoList[i].GetComponent<TMP_InputField>().text = 
+                DataManager.instance.memoDatas[i].내용;
+        }
+    }
+
 }

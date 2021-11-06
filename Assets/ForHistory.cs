@@ -7,6 +7,4 @@ public class ForHistory : MonoBehaviour
 {
     public string 기록;
     public TextMeshProUGUI targetText;
-    
-
 }

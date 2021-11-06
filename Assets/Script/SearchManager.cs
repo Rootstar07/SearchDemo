@@ -42,6 +42,7 @@ public class SearchManager : MonoBehaviour
     public GameObject[] 검색기록목록;
     public GameObject 검색기록;
     public InputField inputField;
+    public HistoryManager historyManager;
     [Header("사진관리")]
     public GameObject 안시우사진;
 
@@ -64,7 +65,6 @@ public class SearchManager : MonoBehaviour
         {
             검색기록목록[i] = 검색기록.transform.GetChild(i).gameObject;
         }
-
     }
 
     private void Update()
@@ -140,22 +140,37 @@ public class SearchManager : MonoBehaviour
 
             // 검색 결과 히스토리에 추가
             AddToHistory();
+
+            // 검색 히스토리 저장
+            historyManager.SaveHistory();
         }
         else
         {
             feedBackText.text = "0";
         }
+
+        // 저장하기
+        DataManager.instance.ExportData();
+
+        // 클릭음 재생
+        DataManager.instance.audioSource.Play();
     }
 
     // 검색기록
     public void ShowSearchHistory()
     {
         searchHistory.SetActive(true);
+
+        // 클릭음 재생
+        DataManager.instance.onOffAudioSource.Play();
     }
 
     public void CloseSearchHistory()
     {
         searchHistory.SetActive(false);
+
+        // 클릭음 재생
+        DataManager.instance.onOffAudioSource.Play();
     }
 
     public void AddToHistory()
@@ -314,6 +329,9 @@ public class SearchManager : MonoBehaviour
             Debug.Log("문서표시");
             안시우사진.SetActive(false);
         }
+
+        // 클릭음 재생
+        DataManager.instance.onOffAudioSource.Play();
     }
 
     public void ShowInfo()
@@ -442,6 +460,9 @@ public class SearchManager : MonoBehaviour
                 lockCode = 3;
             }
         }
+
+        // 클릭음 재생
+        DataManager.instance.onOffAudioSource.Play();
     }
 
     public void PWCheck()
@@ -458,12 +479,18 @@ public class SearchManager : MonoBehaviour
             Debug.Log("해제 실패");
             비밀번호feedBackText.text = "올바른 암호가 아닙니다.";
         }
+
+        // 클릭음 재생
+        DataManager.instance.onOffAudioSource.Play();
     }
 
     public void PWContinue()
     {
         비밀번호경고창.SetActive(false);
         ShowDoc(현재열린결과리스트);
+
+        // 클릭음 재생
+        DataManager.instance.onOffAudioSource.Play();
     }
 
     public void CheckStar()
@@ -490,6 +517,9 @@ public class SearchManager : MonoBehaviour
             별.SetActive(true);
             DataManager.instance.docDatas[현재문서인덱스].중요문서 = true;
         }
+
+        // 클릭음 재생
+        DataManager.instance.starAudioSource.Play();
     }
 
     public void OffDoc()
@@ -500,7 +530,8 @@ public class SearchManager : MonoBehaviour
         // 즐겨찾기 화면에서 강조 업데이트
         UpdateStarLockInStarList();
 
-
+        // 저장하기
+        DataManager.instance.ExportData();
     }
 
     public void AlertClose()

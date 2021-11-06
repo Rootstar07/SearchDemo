@@ -15,6 +15,15 @@ public class DataManager : MonoBehaviour
     public PWData[] pWDatas;
     public MemoData[] memoDatas;
     public ThemeData[] themeDatas;
+    public MemoManager memoManager;
+    public HistoryManager historyManager;
+    [Header("소리")]
+    public AudioSource audioSource;
+    public AudioSource starAudioSource;
+    public AudioSource onOffAudioSource;
+    public AudioSource rainAudioSource;
+    public TextMeshProUGUI 배경음text;
+    public TextMeshProUGUI 클릭음text;
 
     public enum PW
     {
@@ -59,6 +68,7 @@ public class DataManager : MonoBehaviour
         public int 문단간격;
         public int 현재테마;
         public bool 후원자;
+        public string[] 검색기록;
     }
 
     [System.Serializable]
@@ -134,6 +144,13 @@ public class DataManager : MonoBehaviour
         string data3 = File.ReadAllText(Application.persistentDataPath + "/memoDatas.json");
         memoDatas = JsonConvert.DeserializeObject<MemoData[]>(data3);
 
+        // 메모 불러오기
+        memoManager.LoadMemo();
+
+        // 검색 기록 불러오기
+        historyManager.LoadHistory();
+
+
         Debug.Log("불러오기 완료");
     }
 
@@ -161,5 +178,37 @@ public class DataManager : MonoBehaviour
         //LoadData();
         //ExportData();
         //ImportData();
+    }
+
+    public void SoundClick(string type)
+    {
+        if (type == "배경")
+        {
+            if (rainAudioSource.volume != 0)
+            {
+                rainAudioSource.volume = 0;
+                배경음text.text = "off";
+            }
+            else
+            {
+                rainAudioSource.volume = 0.8f;
+                배경음text.text = "on";
+            }
+        }
+        if (type == "클릭")
+        {
+            if (starAudioSource.volume != 0)
+            {
+                starAudioSource.volume = 0;
+                onOffAudioSource.volume = 0;
+                클릭음text.text = "off";
+            }
+            else
+            {
+                starAudioSource.volume = 0.3f;
+                onOffAudioSource.volume = 0.5f;
+                클릭음text.text = "on";
+            }
+        }
     }
 }
