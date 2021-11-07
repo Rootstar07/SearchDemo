@@ -302,7 +302,7 @@ public class SearchManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(lockCode);
+            Debug.Log("현재 락코드: " + lockCode);
             // 잠김 경고
             PWAlert(lockCode);
         }
@@ -336,9 +336,6 @@ public class SearchManager : MonoBehaviour
         {
             엔딩조건달성 = true;
         }
-
-        
-
         // 클릭음 재생
         DataManager.instance.onOffAudioSource.Play();
     }
@@ -356,19 +353,7 @@ public class SearchManager : MonoBehaviour
         해제UI.SetActive(false);
 
         PWAlertStar();
-
-        switch (code)
-        {
-            case 1:
-                암호종류Text.text = DataManager.instance.pWDatas[0].암호종류.ToString();
-                break;
-            case 2:
-                암호종류Text.text = DataManager.instance.pWDatas[1].암호종류.ToString();
-                break;
-            case 3:
-                암호종류Text.text = DataManager.instance.pWDatas[2].암호종류.ToString();
-                break;
-        }
+        암호종류Text.text = DataManager.instance.pWDatas[code - 1].암호종류.ToString();
     }
 
     public void PWAlertStar()
@@ -444,7 +429,7 @@ public class SearchManager : MonoBehaviour
             }
             else
             {
-                lockCode = 3;
+                lockCode = 4;
             }
         }
         else if (data == DataManager.PW.유키코의_두번째책_출간일_MMDD)
@@ -455,7 +440,7 @@ public class SearchManager : MonoBehaviour
             }
             else
             {
-                lockCode = 3;
+                lockCode = 5;
             }
         }
         else if (data == DataManager.PW.보관물_756)
@@ -466,7 +451,7 @@ public class SearchManager : MonoBehaviour
             }
             else
             {
-                lockCode = 3;
+                lockCode = 6;
             }
         }
 

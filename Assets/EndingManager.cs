@@ -14,6 +14,7 @@ public class EndingManager : MonoBehaviour
     public GameObject endingB;
     public GameObject thanks;
     public GameObject nhk문서화면;
+    public Color color;
 
     public void CheckButton()
     {
@@ -58,8 +59,11 @@ public class EndingManager : MonoBehaviour
 
     public void BacktoSearch()
     {
-        페이즈 = 0;
-        thanks.SetActive(false);
+        thanks.GetComponent<Image>().color = color;
+        thanks.transform.GetChild(0).gameObject.SetActive(false);
+        thanks.transform.GetChild(1).gameObject.SetActive(false);
+
+        페이즈 = 0;      
         endingScene.SetActive(false);
         nhk문서화면.SetActive(false);
         endingList[0].SetActive(true);

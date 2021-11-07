@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     public GameObject setting;
     public TextMeshProUGUI exampleText;
     public GameObject 하단바;
+    public GameObject 엔딩;
     [Header("디바이스 로그인")]
     public Text devicePW;
     public GameObject 로그인영역;
@@ -34,6 +35,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI 띄어쓰기;
     public TextMeshProUGUI 줄간격;
     public TextMeshProUGUI 문단간격;
+    [Header("후원자")]
+    public bool 후원자 = false;
 
 
     private void Start()
@@ -61,7 +64,7 @@ public class UIManager : MonoBehaviour
     // 배너 광고 UI 위치 조정
     public void UIPos()
     {
-        if (!DataManager.instance.gameData.후원자)
+        if (!후원자)
         {
             하단바.transform.localPosition =
                 new Vector2(0, 하단바.transform.localPosition.y + DPToPixel(2280, 50) * 2.3f);
@@ -77,6 +80,8 @@ public class UIManager : MonoBehaviour
                 new Vector2(0, doc.transform.localPosition.y + DPToPixel(2280, 50) * 2.3f);
             검색기록.transform.localPosition =
                 new Vector2(0, 검색기록.transform.localPosition.y + DPToPixel(2280, 50) * 1.5f);
+            엔딩.transform.localPosition =
+                new Vector2(0, 엔딩.transform.localPosition.y + DPToPixel(2280, 50) * 2.3f);
         }
     }
 
@@ -106,6 +111,9 @@ public class UIManager : MonoBehaviour
 
         app[1].GetComponent<ForApp>().누른배경.SetActive(true);
         app[1].GetComponent<ForApp>().기본배경.SetActive(false);
+
+        // 저장하기
+        DataManager.instance.ExportData();
     }
 
     public void Memo()
@@ -116,6 +124,9 @@ public class UIManager : MonoBehaviour
 
         app[2].GetComponent<ForApp>().누른배경.SetActive(true);
         app[2].GetComponent<ForApp>().기본배경.SetActive(false);
+
+        // 저장하기
+        DataManager.instance.ExportData();
     }
 
     public void Setting()
@@ -133,6 +144,9 @@ public class UIManager : MonoBehaviour
 
         exampleText.lineSpacing =
             DataManager.instance.gameData.자간크기;
+
+        // 저장하기
+        DataManager.instance.ExportData();
     }
 
     public void SettingChange(int num)

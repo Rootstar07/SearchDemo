@@ -3959,7 +3959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &113630408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7650,7 +7650,6 @@ RectTransform:
   - {fileID: 785259526}
   - {fileID: 181084589}
   - {fileID: 1313060777}
-  - {fileID: 638451027}
   - {fileID: 1551644242}
   - {fileID: 808546080}
   m_Father: {fileID: 0}
@@ -9947,6 +9946,7 @@ MonoBehaviour:
   endingB: {fileID: 895882569}
   thanks: {fileID: 295643674}
   "nhk\uBB38\uC11C\uD654\uBA74": {fileID: 181084588}
+  color: {r: 1, g: 1, b: 1, a: 0}
 --- !u!4 &251826510
 Transform:
   m_ObjectHideFlags: 0
@@ -10320,7 +10320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.98039216, g: 0.98039216, b: 0.98039216, a: 0}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -19794,14 +19794,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638451026}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 528378016}
   - {fileID: 346749717}
-  m_Father: {fileID: 200689812}
-  m_RootOrder: 10
+  m_Father: {fileID: 1313060777}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -23793,7 +23793,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00024414, y: -2156.8}
+  m_AnchoredPosition: {x: 0, y: -2156.8}
   m_SizeDelta: {x: 2280, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &785265709
@@ -24748,12 +24748,12 @@ RectTransform:
   - {fileID: 895882572}
   - {fileID: 295643675}
   m_Father: {fileID: 200689812}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 2280, y: 4814}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &808546081
 Animator:
@@ -28394,7 +28394,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD50C\uB808\uC774 \uD574\uC8FC\uC154\uC11C\n\uAC10\uC0AC\uD569\uB2C8\uB2E4."
+  m_text: "\uD50C\uB808\uC774 \uD574\uC8FC\uC154\uC11C \uAC10\uC0AC\uD569\uB2C8\uB2E4.\n\n\uAC1C\uBC1C:
+    \uAE40\uD0DC\uADFC\n\uC2DC\uB098\uB9AC\uC624: \uAE40\uD0DC\uADFC\n\uB514\uC790\uC778:
+    \uAE40\uD0DC\uADFC\n\nand\nYOU"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4854313f2f9dff49a0265f7b234eddc, type: 2}
   m_sharedMaterial: {fileID: -889765370251609715, guid: d4854313f2f9dff49a0265f7b234eddc,
@@ -28422,8 +28424,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 150
-  m_fontSizeBase: 150
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -39401,6 +39403,7 @@ RectTransform:
   - {fileID: 1864043721}
   - {fileID: 2076259259}
   - {fileID: 36670789}
+  - {fileID: 638451027}
   m_Father: {fileID: 200689812}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47757,7 +47760,7 @@ RectTransform:
   - {fileID: 1963020089}
   - {fileID: 186052161}
   m_Father: {fileID: 200689812}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -52189,7 +52192,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB9CC\uB098\uC11C \uBC18\uAC11\uC2B5\uB2C8\uB2E4\nSaerom Kang \uB2D8"
+  m_text: "\uBC18\uAC11\uC2B5\uB2C8\uB2E4.\nSaerom Kang \uB2D8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4854313f2f9dff49a0265f7b234eddc, type: 2}
   m_sharedMaterial: {fileID: -889765370251609715, guid: d4854313f2f9dff49a0265f7b234eddc,
@@ -52217,8 +52220,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120
-  m_fontSizeBase: 120
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -59588,6 +59591,7 @@ MonoBehaviour:
   setting: {fileID: 1383327785}
   exampleText: {fileID: 1587707880}
   "\uD558\uB2E8\uBC14": {fileID: 785259525}
+  "\uC5D4\uB529": {fileID: 808546079}
   devicePW: {fileID: 1050944690}
   "\uB85C\uADF8\uC778\uC601\uC5ED": {fileID: 1290227535}
   "\uD658\uC601\uC601\uC5ED": {fileID: 1664722004}
@@ -59598,6 +59602,7 @@ MonoBehaviour:
   "\uB744\uC5B4\uC4F0\uAE30": {fileID: 1769170495}
   "\uC904\uAC04\uACA9": {fileID: 131755361}
   "\uBB38\uB2E8\uAC04\uACA9": {fileID: 1400934901}
+  "\uD6C4\uC6D0\uC790": 0
 --- !u!4 &1859511569
 Transform:
   m_ObjectHideFlags: 0
@@ -60489,7 +60494,7 @@ MonoBehaviour:
     "\uB744\uC5B4\uC4F0\uAE30": 20
     "\uBB38\uB2E8\uAC04\uACA9": 200
     "\uD604\uC7AC\uD14C\uB9C8": 0
-    "\uD6C4\uC6D0\uC790": 0
+    "\uD6C4\uC6D0\uC790": 1
     "\uAC80\uC0C9\uAE30\uB85D":
     - 
     - 
