@@ -6932,8 +6932,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 868.1, y: -2300.6}
-  m_SizeDelta: {x: 543.8904, y: 211.8631}
+  m_AnchoredPosition: {x: 868.1, y: -2252.2}
+  m_SizeDelta: {x: 543.8904, y: 308.62244}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &186052162
 MonoBehaviour:
@@ -6954,7 +6954,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ver_1.0
+  m_text: '
+
+    Ver_1.0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3957c2a9b7c206248a0f9f74ae80cee5, type: 2}
   m_sharedMaterial: {fileID: -4677136085437250708, guid: 3957c2a9b7c206248a0f9f74ae80cee5,
@@ -47745,7 +47747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1551644242
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52192,7 +52194,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBC18\uAC11\uC2B5\uB2C8\uB2E4.\nSaerom Kang \uB2D8"
+  m_text: "\uD658\uC601\uD569\uB2C8\uB2E4.\nSaerom Kang \uB2D8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4854313f2f9dff49a0265f7b234eddc, type: 2}
   m_sharedMaterial: {fileID: -889765370251609715, guid: d4854313f2f9dff49a0265f7b234eddc,
@@ -60494,7 +60496,7 @@ MonoBehaviour:
     "\uB744\uC5B4\uC4F0\uAE30": 20
     "\uBB38\uB2E8\uAC04\uACA9": 200
     "\uD604\uC7AC\uD14C\uB9C8": 0
-    "\uD6C4\uC6D0\uC790": 1
+    "\uD6C4\uC6D0\uC790": 0
     "\uAC80\uC0C9\uAE30\uB85D":
     - 
     - 
